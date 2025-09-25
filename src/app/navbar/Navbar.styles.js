@@ -10,6 +10,10 @@ export const NavbarContainer = styled.nav`
     justify-content: space-between;
     align-items: center;
     box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+
+    @media (max-width: 425px) {
+        padding: 16px 8px;
+    }
 `;
 
 export const NavSection = styled.div`
@@ -39,6 +43,14 @@ export const LogoText = styled.div`
     margin-left: 12px;
     color: #4f5a5d;
     margin: 0;
+
+    @media (max-width: 768px) {
+        font-size: large;
+    }
+
+    @media (max-width: 425px) {
+        font-size: small;
+    }
 ;`;
 
 // ------------------------------links styles------------------------------
@@ -102,6 +114,10 @@ export const WidgetIconWrapper = styled.a`
     &:hover::after {
         transform: translateX(-50%) translateY(-14px);
         opacity: 1;
+    }
+
+    @media (max-width: 425px) {
+        margin: 0 8px;
     }
 `;
 

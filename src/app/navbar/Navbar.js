@@ -9,13 +9,18 @@ import {
   Links,
   Widget
 } from './elements';
+import { useResponsive } from "@/hook/useResponsive";
 
 export default function Navbar() {
+  // breakpoints
+  const { isTablet } = useResponsive();
+
   return (
     <NavbarContainer>
       <Logo />
       <NavSection>
-        <Links />
+        {/* Only render Links on tablet screens */}
+        {!isTablet && <Links />}
         <Widget />
       </NavSection>
     </NavbarContainer>
