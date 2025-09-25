@@ -13,10 +13,10 @@ export default function Links() {
 
     return (
         <WidgetContainer>
-            <WidgetIconWrapper data-tooltip="Search">
+            <WidgetIconWrapper data-tooltip="Search" href={null}>
                 <WidgetIcon src="/icons/navbar/search.svg" alt="Search" />
             </WidgetIconWrapper>
-            <WidgetIconWrapper data-tooltip="Cart">
+            <WidgetIconWrapper data-tooltip="Cart" href={null}>
                 <WidgetIcon src="/icons/navbar/shopping_bag.svg" alt="Shopping Bag" />
             </WidgetIconWrapper>
             <WidgetIconWrapper data-tooltip="Profile" href="/profile">
@@ -24,7 +24,7 @@ export default function Links() {
             </WidgetIconWrapper>
             {/* Only render menu icon on tablet screens */}
             {isTablet && (
-                <WidgetIconWrapper>
+                <WidgetIconWrapper data-tooltip="Menu" href={null}>
                     <WidgetIcon src="/icons/navbar/menu.svg" alt="Links Menu" />
                 </WidgetIconWrapper>
             )}
