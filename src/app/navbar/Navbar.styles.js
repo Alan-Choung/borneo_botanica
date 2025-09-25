@@ -47,10 +47,6 @@ export const LogoText = styled.div`
     @media (max-width: 768px) {
         font-size: large;
     }
-
-    @media (max-width: 425px) {
-        font-size: small;
-    }
 ;`;
 
 // ------------------------------links styles------------------------------
