@@ -5,7 +5,7 @@ import {
     WidgetIconWrapper,
     WidgetIcon,
 } from "../../Navbar.styles";
-import { useResponsive } from "@/hook/useResponsive";
+import { useResponsive } from "../../../hook";
 
 export default function Links() {
     // breakpoints
