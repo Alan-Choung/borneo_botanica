@@ -9,7 +9,7 @@ import {
   Links,
   Widget
 } from './elements';
-import { useResponsive } from "@/hook/useResponsive";
+import { useResponsive } from "../../hook";
 
 export default function Navbar() {
   // breakpoints
