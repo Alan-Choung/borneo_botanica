@@ -10,6 +10,7 @@ export const NavbarContainer = styled.nav`
     justify-content: space-between;
     align-items: center;
     box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+    z-index: 999;
 
     @media (max-width: 425px) {
         padding: 16px 8px;
@@ -121,4 +122,36 @@ export const WidgetIcon = styled.img`
     height: 24px;
     width: auto;
     display: block;
+`;
+
+export const CartDrawer = styled.div`
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 100%;
+  padding: 16px;
+  background-color: #fff;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+  z-index: 1001;
+`;
+
+export const SearchDrawer = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 1001;
+`;
+
+export const Backdrop = styled.div`
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1000;
 `;
