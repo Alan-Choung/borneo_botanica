@@ -4,15 +4,6 @@ import { useRef, useEffect } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
-/**
- * A reusable GSAP-powered drawer hook
- *
- * @param {object} options - Drawer config
- * @param {"left" | "right" | "top" | "bottom"} options.direction - Drawer slide direction
- * @param {string | number} [options.width="300px"] - Drawer width (for left/right)
- * @param {string | number} [options.height="300px"] - Drawer height (for top/bottom)
- * @param {string | number} [options.padding="1rem"] - Drawer padding
- */
 export function useDrawer({
   direction = "right",
   width = "300px",
@@ -23,7 +14,6 @@ export function useDrawer({
   const backdropRef = useRef(null);
   const isOpen = useRef(false);
 
-  // Initial hidden state
   useGSAP(() => {
     const drawer = drawerRef.current;
     const backdrop = backdropRef.current;
@@ -38,12 +28,9 @@ export function useDrawer({
   }, []);
 
   const open = () => {
-    const drawer = drawerRef.current;
-    const backdrop = backdropRef.current;
-    if (!drawer || !backdrop) return;
-
-    gsap.to(drawer, { x: 0, y: 0, duration: 0.4, ease: "power3.out" });
-    gsap.to(backdrop, {
+    if (!drawerRef.current || !backdropRef.current) return;
+    gsap.to(drawerRef.current, { x: 0, y: 0, duration: 0.4, ease: "power3.out" });
+    gsap.to(backdropRef.current, {
       autoAlpha: 1,
       pointerEvents: "auto",
       duration: 0.3,
@@ -52,17 +39,14 @@ export function useDrawer({
   };
 
   const close = () => {
-    const drawer = drawerRef.current;
-    const backdrop = backdropRef.current;
-    if (!drawer || !backdrop) return;
-
-    gsap.to(drawer, {
+    if (!drawerRef.current || !backdropRef.current) return;
+    gsap.to(drawerRef.current, {
       x: direction === "right" ? "100%" : direction === "left" ? "-100%" : "0%",
       y: direction === "top" ? "-100%" : direction === "bottom" ? "100%" : "0%",
       duration: 0.3,
       ease: "power3.in",
     });
-    gsap.to(backdrop, {
+    gsap.to(backdropRef.current, {
       autoAlpha: 0,
       pointerEvents: "none",
       duration: 0.3,
@@ -70,11 +54,8 @@ export function useDrawer({
     isOpen.current = false;
   };
 
-  const toggle = () => {
-    isOpen.current ? close() : open();
-  };
+  const toggle = () => (isOpen.current ? close() : open());
 
-  // Backdrop click = close
   useEffect(() => {
     const backdrop = backdropRef.current;
     if (!backdrop) return;
@@ -83,9 +64,6 @@ export function useDrawer({
     return () => backdrop.removeEventListener("click", handleClick);
   }, []);
 
-  /** 
-   * Optional helper: get a ready-to-use close button
-   */
   const getCloseButton = (label = "✕", extraProps = {}) => (
     <button
       type="button"
@@ -105,14 +83,9 @@ export function useDrawer({
     </button>
   );
 
-  return {
+  const drawerProps = {
     drawerRef,
     backdropRef,
-    open,
-    close,
-    toggle,
-    isOpen,
-    getCloseButton,
     styleProps: {
       width: direction === "left" || direction === "right" ? width : "100%",
       height: direction === "top" || direction === "bottom" ? height : "100%",
@@ -127,5 +100,14 @@ export function useDrawer({
       boxShadow: "0 0 20px rgba(0,0,0,0.2)",
       overflowY: "auto",
     },
+  };
+
+  return {
+    open,
+    close,
+    toggle,
+    isOpen,
+    getCloseButton,
+    drawerProps,
   };
 }

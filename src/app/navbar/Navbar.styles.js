@@ -1,6 +1,6 @@
 'use client';
 
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 // ------------------------------general styles------------------------------
 export const NavbarContainer = styled.nav`
@@ -24,6 +24,11 @@ export const NavSection = styled.div`
 `;
 
 // ------------------------------logo styles------------------------------
+export const LogoMenuWrapper = styled.div`
+    display: flex;
+    align-items: center;
+`;
+
 export const LogoBtn = styled.a`
     padding: 0;
     display: flex;
@@ -51,17 +56,36 @@ export const LogoText = styled.div`
 ;`;
 
 // ------------------------------links styles------------------------------
+const rowStyle = css`
+    flex-direction: row;
+    gap: 2rem;
+    margin-right: 32px;
+`;
+
+const columnStyle = css`
+    flex-direction: column;
+    gap: 1rem;
+    padding-top: 40px;
+
+    a {
+        width: 100%;
+        text-align: center;
+        padding: 24px 0 8px;
+        border-bottom: 1px solid #ddd;
+    }
+`;
+
 export const LinksContainer = styled.div`
     display: flex;
-    flex-direction: row;
     align-items: center;
+    ${({ $isColumn }) => ($isColumn ? columnStyle : rowStyle)};
 `;
 
 export const StyledLink = styled.a`
-    margin: 0 16px;
     display: inline-block;
     position: relative;
     overflow: hidden;
+    margin: 0 16px;
 
     &::after {
         content: "";
@@ -85,7 +109,6 @@ export const WidgetContainer = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-left: 32px;
 `;
 
 export const WidgetIconWrapper = styled.a`
@@ -122,36 +145,4 @@ export const WidgetIcon = styled.img`
     height: 24px;
     width: auto;
     display: block;
-`;
-
-export const CartDrawer = styled.div`
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 300px;
-  height: 100%;
-  padding: 16px;
-  background-color: #fff;
-  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
-  z-index: 1001;
-`;
-
-export const SearchDrawer = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100px;
-  background-color: #fff;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  z-index: 1001;
-`;
-
-export const Backdrop = styled.div`
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.5);
-  opacity: 0;
-  pointer-events: none;
-  z-index: 1000;
 `;

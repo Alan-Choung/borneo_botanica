@@ -19,7 +19,6 @@ export default function Navbar() {
     <NavbarContainer>
       <Logo />
       <NavSection>
-        {/* Only render Links on tablet screens */}
         {!isTablet && <Links />}
         <Widget />
       </NavSection>
