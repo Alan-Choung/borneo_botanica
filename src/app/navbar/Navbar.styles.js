@@ -6,11 +6,14 @@ import styled, { css } from "styled-components";
 export const NavbarContainer = styled.nav`
     padding: 16px 32px;
     display: flex;
-    flex direction: row;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
     z-index: 999;
+    position: sticky;
+    background-color: #FFFFFF;
+    top: 0;
 
     @media (max-width: 425px) {
         padding: 16px 8px;
