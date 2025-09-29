@@ -2,46 +2,29 @@
 
 import React from "react";
 
-export function Drawer({
-    drawerRef,
-    backdropRef,
-    direction = "right",
-    width = "300px",
-    height = "100%",
-    padding = "1rem",
-    children,
-}) {
-    // Base styles for all drawers
-    const baseStyles = {
-        position: "fixed",
-        background: "#fff",
-        zIndex: 1000,
-        padding,
-        overflowY: "auto",
-    };
-
-    // Direction-specific styles
-    const directionStyles = {
-        left: { top: 0, bottom: 0, left: 0, width, height: "100%" },
-        right: { top: 0, bottom: 0, right: 0, width, height: "100%" },
-        top: { top: 0, left: 0, right: 0, width: "100%", height },
-        bottom: { bottom: 0, left: 0, right: 0, width: "100%", height },
-    };
-
+/**
+ * Drawer component
+ * - purely presentational
+ * - controlled entirely by useDrawer hook
+ */
+export function Drawer({ drawerRef, backdropRef, children, styleProps }) {
     return (
         <>
-            <div ref={drawerRef} style={{ ...baseStyles, ...directionStyles[direction] }}>
-                {children}
-            </div>
+            {/* Backdrop */}
             <div
                 ref={backdropRef}
                 style={{
                     position: "fixed",
                     inset: 0,
                     background: "rgba(0,0,0,0.5)",
-                    zIndex: 999,
+                    zIndex: 1400,
                 }}
             />
+
+            {/* Drawer panel */}
+            <div ref={drawerRef} style={styleProps}>
+                {children}
+            </div>
         </>
     );
 }
